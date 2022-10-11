@@ -1,39 +1,5 @@
 <template>
   <div class="ardorHeader">
-    <nav class="menu__container-burger">
-      <ul class="nav__list">
-        <li class="nav__list-item">
-          <a class="nav__list-link" href="./index.html"> Home </a>
-          <div class="nav__list-link--underline"></div>
-        </li>
-        <li class="nav__list-item">
-          <router-link to="/aboutMe" class="nav__list-link">
-            About me
-          </router-link>
-          <div class="nav__list-link--underline"></div>
-        </li>
-        <li class="nav__list-item">
-          <a class="nav__list-link" href="#"> Portfolio </a>
-          <div class="nav__list-link--underline"></div>
-        </li>
-        <li class="nav__list-item">
-          <a class="nav__list-link" href="./contacts.html"> Contact Us </a>
-          <div class="nav__list-link--underline"></div>
-        </li>
-        <li class="nav__list-item">
-          <a class="nav__list-link" href="#"> For Clients </a>
-          <div class="nav__list-link--underline"></div>
-        </li>
-        <li class="nav__list-item">
-          <a class="nav__list-link" href="#"> Other </a>
-          <div class="nav__list-link--underline"></div>
-        </li>
-        <li class="nav__list-item">
-          <a class="nav__list-link" href="./contacts.html"> Contacts </a>
-          <div class="nav__list-link--underline"></div>
-        </li>
-      </ul>
-    </nav>
     <header class="header">
       <video
         id="background-video"
@@ -51,10 +17,10 @@
         <nav class="header__container-menu">
           <ul class="menu__list">
             <li class="menu__list-item">
-              <router-link to="/" class="nav__list-link"> Home </router-link>
+              <router-link to="/" class="menu__list-link"> Home </router-link>
             </li>
             <li class="menu__list-item">
-              <router-link to="/AboutMe" class="nav__list-link">
+              <router-link to="/AboutMe" class="menu__list-link">
                 About me
               </router-link>
             </li>
@@ -106,8 +72,8 @@
           </ul>
           <div class="menu__logo">
             <router-link to="/" class="menu__logo-text">
-            <h1 class="logo__text">Ardor Photographer</h1>
-          </router-link>
+              <h1 class="logo__text">Ardor Photographer</h1>
+            </router-link>
             <router-link to="/" class="menu__logo-img">
               <svg class="logo__img">
                 <use xlink:href="../assets/img/sprite.svg#logo"></use>
@@ -119,14 +85,9 @@
               <a href="#" class="menu__list-link"> For Clients </a>
               <ul class="menu__list--hover">
                 <li class="menu__list-item">
-                  <a
-                    class="menu__list-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="#"
-                  >
+                  <router-link to="/ClientPrice" class="menu__list-link">
                     Price
-                  </a>
+                  </router-link>
                 </li>
                 <!-- <li class="menu__list-item">
                                 <a class="menu__list-link" target="_blank" rel="noopener noreferrer" href="#">
@@ -164,12 +125,18 @@
           </ul>
         </nav>
       </div>
+      <ardorSideBar />
     </header>
   </div>
 </template>
 
 <script>
-export default {};
+import ardorSideBar from "@/components/ardorSideBar.vue";
+export default {
+  components: {
+    ardorSideBar,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -194,213 +161,13 @@ export default {};
   bottom: 0;
   z-index: -2;
 }
-#burger {
-  visibility: hidden;
-  position: absolute;
-  display: none;
-
-  &:checked ~ .burger__btn > .burger__btn-content {
-    background-color: transparent;
-    z-index: 10;
-  }
-  &:checked ~ .burger__btn > .burger__btn-content::before {
-    top: 0;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    // background-color: black;
-  }
-  &:checked ~ .burger__btn > .burger__btn-content::after {
-    top: 0;
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    // background-color:black;
-  }
-  &:checked ~ .menu__container-burger {
-    @include translateX(0);
-    background-color: $clText;
-    opacity: 0.9;
-    z-index: 9;
-
-    & > .nav__list > .nav__list-item > .nav__list-link {
-      color: black;
-      opacity: 1;
-      z-index: 10;
-    }
-  }
-}
-.burger__btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 24px;
-  cursor: pointer;
-  z-index: 10;
-
-  position: fixed;
-  opacity: 0;
-  right: 70px;
-  top: 35px;
-  visibility: hidden;
-  display: none;
-
-  @include maxWidth(850px) {
-    opacity: 1;
-    visibility: visible;
-    display: flex;
-    right: 50px;
-  }
-  @include maxWidth(600px) {
-    right: 35px;
-  }
-  @include maxWidth(500px) {
-    right: 20px;
-  }
-
-  & > .burger__btn-content,
-  & > .burger__btn-content::before,
-  & > .burger__btn-content::after {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: grey;
-    transition-duration: 0.25s;
-  }
-
-  .burger__btn-content::before {
-    content: "";
-    top: -12px;
-    background-color: grey;
-    @include maxWidth(600px) {
-      top: -10px;
-    }
-  }
-  .burger__btn-content::after {
-    content: "";
-    top: 12px;
-    background-color: grey;
-    @include maxWidth(600px) {
-      top: 10px;
-    }
-  }
-}
-.menu__container-burger {
-  display: block;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  padding: 0 20px 20px;
-  @include translateX(-100%);
-
-  @include transition(0.3s);
-  .nav__list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    flex-direction: column;
-    padding: 0;
-    list-style: none;
-    background-color: transparent;
-    @include transition(0.5s);
-    top: 0px;
-    z-index: -1;
-
-    &-link {
-      display: flex;
-      font-family: "Cormorant SC", serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 20px;
-      display: flex;
-      align-items: center;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: black;
-      text-decoration: none;
-      transition-duration: 0.25s;
-      position: relative;
-      overflow: hidden;
-
-      &--underline {
-        content: "";
-        position: absolute;
-        border-bottom: 1px solid black;
-        @include transition(0.3s);
-        left: -150px;
-        width: 100%;
-        bottom: 0;
-        opacity: 0;
-        z-index: 0;
-      }
-    }
-
-    &-item {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-
-      & + .nav__list-item {
-        margin-top: 20px;
-      }
-
-      &:hover .nav__list-link--underline {
-        left: 0px;
-        opacity: 1;
-        z-index: 1;
-      }
-
-      &:focus .nav__list-link--underline {
-        left: 0px;
-        opacity: 1;
-        z-index: 1;
-      }
-    }
-  }
-}
 
 .header {
-  // background-image: url(../img/@Ardor.photographer_9359.jpg);
-  // height: 100vh;
-  // background-position: center;
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  // background-position-y: -1480px;
   margin: auto;
   position: relative;
   overflow: hidden;
   width: 100%;
-  margin-top: -300px;
-  z-index: 2;
-  //   background-color: black;
-
-  // @include maxWidth(1700px){
-  //     background-position-y: -1280px;
-  // }
-
-  // @include maxWidth(1640px){
-  //     background-position-y: -1200px;
-  // }
-
-  // @include maxWidth(1440px){
-  //     background-position-y: -1100px;
-  // }
-
-  // @include maxWidth($lg){
-  //     background-position-y: -460px;
-  // }
-
-  // @include maxWidth($md){
-  //     background-position-y: -310px;
-  // }
+  z-index: 20;
 
   .header__bg {
     position: absolute;
@@ -563,9 +330,6 @@ export default {};
         }
 
         &-text {
-          //   min-width: 200px;
-          //   position: absolute;
-          //   top: 30px;
           text-decoration: none;
           color: $clText;
           text-transform: uppercase;

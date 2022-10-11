@@ -18,7 +18,7 @@
             :indicators="false"
             :control-btn="false"
             :duration="5000"
-            :speed="1000"
+            :speed="1250"
             :interval="1000"
           >
             <SliderItem class="slider__item">
@@ -68,8 +68,8 @@
             :indicators="false"
             :control-btn="false"
             :duration="5000"
-            :speed="1000"
-            :interval="1000"
+            :speed="1350"
+            :interval="1100"
           >
             <SliderItem class="slider__item">
               <div href="#" target="_blank" class="slider__item-link">
@@ -118,8 +118,8 @@
             :indicators="false"
             :control-btn="false"
             :duration="5000"
-            :speed="1000"
-            :interval="1000"
+            :speed="1250"
+            :interval="1150"
           >
             <SliderItem class="slider__item">
               <div href="#" target="_blank" class="slider__item-link">
@@ -168,8 +168,8 @@
             :indicators="false"
             :control-btn="false"
             :duration="5000"
-            :speed="1000"
-            :interval="1000"
+            :speed="1250"
+            :interval="1250"
           >
             <SliderItem class="slider__item">
               <div href="#" target="_blank" class="slider__item-link">
@@ -254,7 +254,12 @@ export default {
     grid-auto-rows: max-content;
     gap: 10px;
     position: relative;
-
+    @include maxWidth($s) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include maxWidth($xs) {
+      grid-template-columns: repeat(1, 1fr);
+    }
     .container__content-item {
       width: 100%;
 
@@ -296,6 +301,10 @@ export default {
           z-index: 5;
 
           &:hover {
+            opacity: 0;
+          }
+
+          @include maxWidth($xs) {
             opacity: 0;
           }
 

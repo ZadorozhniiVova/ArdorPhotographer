@@ -1,7 +1,10 @@
 <template>
   <footer class="footer">
     <div class="footer__container">
-      <span class="footer__title"> Ardor Photographer </span>
+      <router-link to="/" class="footer__title">
+        Ardor Photographer
+      </router-link>
+
       <nav class="footer__menu">
         <ul class="menu__list">
           <li class="menu__list-el">
@@ -15,24 +18,14 @@
             </a>
           </li>
           <li class="menu__list-el">
-            <a
-              class="menu__link"
-              href="./about.html"
-              target="_blank"
-              rel="noindex nofollow"
-            >
+            <router-link to="/AboutMe" class="menu__link">
               About me
-            </a>
+            </router-link>
           </li>
           <li class="menu__list-el">
-            <a
-              class="menu__link"
-              href="./forClients__price.html"
-              target="_blank"
-              rel="noindex nofollow"
-            >
+            <router-link to="/ClientPrice" class="menu__link">
               Price
-            </a>
+            </router-link>
           </li>
           <li class="menu__list-el">
             <a
@@ -171,20 +164,22 @@ export default {};
 @import "../assets/_variables.scss";
 .footer {
   background-color: black;
+  padding: 0 !important;
+  z-index: 10;
 
   .footer__container {
     @include container($xlC);
     @include flexCenter;
     flex-direction: column;
     width: 95%;
-    padding: 60px 0;
+    padding: 20px 0;
 
     @include maxWidth($lg) {
       max-width: $lgC;
     }
 
     @include maxWidth($md) {
-      padding: 30px 0;
+      padding: 20px 0;
       max-width: $md;
     }
     @include maxWidth($s) {

@@ -42,7 +42,9 @@
             </template>
 
             <v-list dark class="d-flex flex-column">
-              <router-link to="/" class="menu__list-link"> Price </router-link>
+              <router-link to="/ClientPrice" class="menu__list-link">
+                Price
+              </router-link>
               <router-link to="/" class="menu__list-link">
                 Feedback
               </router-link>
@@ -56,11 +58,17 @@
         </div>
       </nav>
     </div>
+    <ardorSideBar />
   </header>
 </template>
 
 <script>
-export default {};
+import ardorSideBar from "@/components/ardorSideBar.vue";
+export default {
+  components: {
+    ardorSideBar,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -68,13 +76,11 @@ export default {};
 @import "../assets/_variables.scss";
 
 .header {
-
   position: relative;
   // overflow: hidden;
   width: 100%;
   z-index: 2;
   background-color: black;
-
 
   .header__container {
     z-index: 5;
@@ -192,7 +198,6 @@ export default {};
           font-family: "Cormorant SC", serif;
           font-weight: 300;
           font-size: 22px;
-          
 
           @include maxWidth(1200px) {
             font-weight: 300;
@@ -211,7 +216,7 @@ export default {};
             font-weight: 300;
             font-size: 10px;
           }
-          .logo__text{
+          .logo__text {
             margin-bottom: 0 !important;
           }
         }
